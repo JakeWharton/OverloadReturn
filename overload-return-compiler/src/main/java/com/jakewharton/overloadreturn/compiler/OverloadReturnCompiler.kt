@@ -18,9 +18,7 @@ class OverloadReturnCompiler(
 ) {
   fun parse(bytes: ByteArray) : ClassInfo {
     val overloads = mutableListOf<ReturnOverload>()
-    val visitor = OverloadReturnParsingClassVisitor(overloads, debug)
-    val reader = ClassReader(bytes)
-    reader.accept(visitor, 0)
+    ClassReader(bytes).accept(ParsingClassVisitor(overloads, debug), 0)
 
     return ClassInfo(bytes, overloads)
   }
@@ -37,7 +35,7 @@ data class ClassInfo(
     }
 
     val writer = ClassWriter(null, 0)
-    val filteringVisitor = OverloadReturnFilteringClassVisitor(writer)
+    val filteringVisitor = FilteringClassVisitor(writer)
     ClassReader(originalBytes).accept(filteringVisitor, 0)
 
     overloads.forEach { target ->
