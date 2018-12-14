@@ -1,0 +1,29 @@
+buildscript {
+  ext.versions = [
+      'kotlin': '1.3.11',
+  ]
+
+  ext.deps = [
+      'asm': 'org.ow2.asm:asm:7.0',
+      'asmUtil': 'org.ow2.asm:asm-util:7.0',
+      'kotlin': "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}",
+      'clikt': 'com.github.ajalt:clikt:1.6.0',
+      'junit': 'junit:junit:4.13-beta-1',
+      'compileTesting': 'com.google.testing.compile:compile-testing:0.15',
+      'truth': 'com.google.truth:truth:0.42',
+  ]
+
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+  }
+}
+
+subprojects {
+  repositories {
+    mavenCentral()
+  }
+}

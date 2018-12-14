@@ -1,0 +1,21 @@
+apply plugin: 'org.jetbrains.kotlin.jvm'
+apply plugin: 'application'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+mainClassName = 'com.jakewharton.overloadreturn.compiler.Main'
+
+dependencies {
+  implementation project(':overload-return-annotations')
+  implementation deps.kotlin
+  implementation deps.asm
+  implementation deps.clikt
+
+  testImplementation deps.junit
+  testImplementation deps.compileTesting
+  testImplementation deps.asmUtil
+}
+
+distTar.enabled = false
+assemble.dependsOn(installDist)
