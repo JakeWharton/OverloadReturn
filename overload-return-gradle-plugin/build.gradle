@@ -1,0 +1,25 @@
+apply plugin: 'org.jetbrains.kotlin.jvm'
+apply plugin: 'java-gradle-plugin'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+gradlePlugin {
+  plugins {
+    overloadReturn {
+      id = 'com.jakewharton.overloadreturn'
+      implementationClass = 'com.jakewharton.overloadreturn.gradle.OverloadReturnPlugin'
+    }
+  }
+}
+
+dependencies {
+  compileOnly gradleApi()
+
+  implementation project(':overload-return-compiler')
+  implementation deps.androidGradlePlugin
+  implementation deps.kotlin
+  
+  testImplementation deps.junit
+  testImplementation deps.truth
+}

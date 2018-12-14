@@ -77,7 +77,23 @@ up in the final artifact if desired.
 
 #### Android Gradle Plugin
 
-TODO plugin
+Add and apply the plugin to any library or application module and it will automatically register
+itself as a transform.
+
+```groovy
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'com.android.tools.build:gradle:…'
+    classpath 'com.jakewharton.overloadreturn:overload-return-gradle-plugin:…'
+  }
+}
+
+apply plugin: 'com.android.library' // or .application
+apply plugin: 'com.jakewharton.overloadreturn'
+```
 
 #### Command Line
 

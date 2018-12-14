@@ -1,5 +1,10 @@
+# IntelliJ IDEA
 .idea
 *.iml
 
+# Gradle
 build
 .gradle
+
+# Used by Android test fixtures
+local.properties

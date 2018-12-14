@@ -1,0 +1,26 @@
+plugins {
+  id 'com.android.library'
+  id 'com.jakewharton.overloadreturn'
+}
+
+repositories {
+  mavenCentral()
+  google()
+  jcenter()
+}
+
+android {
+  compileSdkVersion 28
+
+  defaultConfig {
+    minSdkVersion 28
+  }
+
+  sourceSets {
+    main.java.srcDirs += '../../../../../overload-return-annotations/src/main/java'
+  }
+
+  lintOptions {
+    checkReleaseBuilds false
+  }
+}

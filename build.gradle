@@ -11,6 +11,7 @@ buildscript {
       'junit': 'junit:junit:4.13-beta-1',
       'compileTesting': 'com.google.testing.compile:compile-testing:0.15',
       'truth': 'com.google.truth:truth:0.42',
+      'androidGradlePlugin': 'com.android.tools.build:gradle:3.3.0-rc02'
   ]
 
   repositories {
@@ -25,5 +26,7 @@ buildscript {
 subprojects {
   repositories {
     mavenCentral()
+    google()
+    jcenter() // TODO Update to Gradle 5.1 and limit this to org.jetbrains.trove4j:trove4j
   }
 }
