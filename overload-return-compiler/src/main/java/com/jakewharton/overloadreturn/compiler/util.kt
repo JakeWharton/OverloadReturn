@@ -45,4 +45,4 @@ internal fun Type.toReturnInstruction() = when (this) {
 internal infix fun Int.isFlagIn(value: Int) = (value and this) != 0
 internal infix fun Int.isNotFlagIn(value: Int) = (value and this) == 0
 
-internal fun Int.withFlag(flag: Int) = this or flag
+internal fun Int.withFlags(flag1: Int, flag2: Int) = this or flag1 or flag2

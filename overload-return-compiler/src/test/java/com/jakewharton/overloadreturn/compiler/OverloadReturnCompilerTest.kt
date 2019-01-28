@@ -69,8 +69,8 @@ class OverloadReturnCompilerTest {
           MAXSTACK = 1
           MAXLOCALS = 1
 
-        // access flags 0x1001
-        public synthetic method()V
+        // access flags 0x1041
+        public synthetic bridge method()V
           ALOAD 0
           INVOKEVIRTUAL com/example/Test.method ()I
           POP
@@ -141,8 +141,8 @@ class OverloadReturnCompilerTest {
           MAXSTACK = 1
           MAXLOCALS = 0
 
-        // access flags 0x1009
-        public static synthetic method()V
+        // access flags 0x1049
+        public static synthetic bridge method()V
           INVOKESTATIC com/example/Test.method ()I
           POP
           RETURN
@@ -210,8 +210,8 @@ class OverloadReturnCompilerTest {
           MAXSTACK = 1
           MAXLOCALS = 1
 
-        // access flags 0x1001
-        public synthetic method()Ljava/lang/CharSequence;
+        // access flags 0x1041
+        public synthetic bridge method()Ljava/lang/CharSequence;
           ALOAD 0
           INVOKEVIRTUAL com/example/Test.method ()Ljava/lang/String;
           ARETURN
@@ -278,8 +278,8 @@ class OverloadReturnCompilerTest {
           MAXSTACK = 1
           MAXLOCALS = 0
 
-        // access flags 0x1009
-        public static synthetic method()Ljava/lang/CharSequence;
+        // access flags 0x1049
+        public static synthetic bridge method()Ljava/lang/CharSequence;
           INVOKESTATIC com/example/Test.method ()Ljava/lang/String;
           ARETURN
           MAXSTACK = 1
@@ -355,8 +355,8 @@ class OverloadReturnCompilerTest {
           MAXSTACK = 12
           MAXLOCALS = 12
 
-        // access flags 0x1001
-        public synthetic method(ZBCDFIJSLjava/lang/Object;)Ljava/lang/CharSequence;
+        // access flags 0x1041
+        public synthetic bridge method(ZBCDFIJSLjava/lang/Object;)Ljava/lang/CharSequence;
           ALOAD 0
           ILOAD 1
           ILOAD 2

@@ -2,6 +2,7 @@ package com.jakewharton.overloadreturn.compiler
 
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
+import org.objectweb.asm.Opcodes.ACC_BRIDGE
 import org.objectweb.asm.Opcodes.ACC_STATIC
 import org.objectweb.asm.Opcodes.ACC_SYNTHETIC
 import org.objectweb.asm.Opcodes.ALOAD
@@ -42,8 +43,8 @@ data class ClassInfo(
       val argumentTypes = Type.getArgumentTypes(target.descriptor)
       val newDescriptor = Type.getMethodDescriptor(target.returnOverload, *argumentTypes)
 
-      writer.visitMethod(target.access.withFlag(ACC_SYNTHETIC), target.name, newDescriptor,
-          target.signature, target.exceptions).apply {
+      writer.visitMethod(target.access.withFlags(ACC_BRIDGE, ACC_SYNTHETIC), target.name,
+          newDescriptor, target.signature, target.exceptions).apply {
         visitCode()
 
         var localIndex = 0
