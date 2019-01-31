@@ -15,6 +15,7 @@ dependencies {
   testImplementation deps.junit
   testImplementation deps.compileTesting
   testImplementation deps.asmUtil
+  testImplementation deps.jimfs
 }
 
 distTar.enabled = false

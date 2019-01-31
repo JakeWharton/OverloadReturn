@@ -10,15 +10,9 @@ import com.android.build.api.transform.Status.REMOVED
 import com.android.build.api.transform.Transform
 import com.android.build.api.transform.TransformInvocation
 import com.jakewharton.overloadreturn.compiler.OverloadReturnCompiler
+import com.jakewharton.overloadreturn.compiler.processDirectory
 import java.net.URI
 import java.nio.file.FileSystems
-import java.nio.file.FileVisitResult
-import java.nio.file.FileVisitResult.CONTINUE
-import java.nio.file.Files
-import java.nio.file.Path
-import java.nio.file.Paths
-import java.nio.file.SimpleFileVisitor
-import java.nio.file.attribute.BasicFileAttributes
 
 internal class OverloadReturnTransform : Transform() {
   override fun getName() = "overloadReturn"
@@ -43,7 +37,7 @@ internal class OverloadReturnTransform : Transform() {
         System.err.println("DIRECTORY: ${directory.file} changed: ${directory.changedFiles.size} incremental: ${invocation.isIncremental}")
 
         if (!invocation.isIncremental) {
-          processPath(directory.file.toPath(), outputFileRoot.toPath())
+          compiler.processDirectory(directory.file.toPath(), outputFileRoot.toPath())
         } else {
           directory.changedFiles.forEach { file, status ->
             val relativeFile = file.relativeTo(directory.file)
@@ -76,7 +70,7 @@ internal class OverloadReturnTransform : Transform() {
               FileSystems.newFileSystem(jar.file.toPath(), null).use { inputFs ->
                 val inputRoot = inputFs.rootDirectories.single()
                 val outputRoot = outputFs.rootDirectories.single()
-                processPath(inputRoot, outputRoot)
+                compiler.processDirectory(inputRoot, outputRoot)
               }
             }
           }
@@ -86,25 +80,5 @@ internal class OverloadReturnTransform : Transform() {
         }
       }
     }
-  }
-
-  private fun processPath(inputRoot: Path, outputRoot: Path) {
-    Files.walkFileTree(inputRoot, object : SimpleFileVisitor<Path>() {
-      override fun visitFile(inputPath: Path,
-          attrs: BasicFileAttributes): FileVisitResult {
-        val relativePath = inputRoot.relativize(inputPath)
-        val outputPath = outputRoot.resolve(relativePath)
-        Files.createDirectories(outputPath.parent)
-
-        if (inputPath.toString().endsWith(".class")) {
-          val inputBytes = Files.readAllBytes(inputPath)
-          val outputBytes = compiler.parse(inputBytes).toBytes()
-          Files.write(outputPath, outputBytes)
-        } else {
-          Files.copy(inputPath, outputPath)
-        }
-        return CONTINUE
-      }
-    })
   }
 }

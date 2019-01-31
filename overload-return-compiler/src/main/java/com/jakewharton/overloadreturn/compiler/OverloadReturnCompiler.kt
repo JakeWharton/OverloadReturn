@@ -13,6 +13,12 @@ import org.objectweb.asm.Opcodes.LLOAD
 import org.objectweb.asm.Opcodes.POP
 import org.objectweb.asm.Type
 import org.objectweb.asm.Type.VOID_TYPE
+import java.nio.file.FileVisitResult
+import java.nio.file.FileVisitResult.CONTINUE
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.SimpleFileVisitor
+import java.nio.file.attribute.BasicFileAttributes
 
 class OverloadReturnCompiler(
   val debug: Boolean = false
@@ -23,6 +29,25 @@ class OverloadReturnCompiler(
 
     return ClassInfo(bytes, overloads)
   }
+}
+
+fun OverloadReturnCompiler.processDirectory(inputRoot: Path, outputRoot: Path) {
+  Files.walkFileTree(inputRoot, object : SimpleFileVisitor<Path>() {
+    override fun visitFile(inputPath: Path, attrs: BasicFileAttributes): FileVisitResult {
+      val relativePath = inputRoot.relativize(inputPath)
+      val outputPath = outputRoot.resolve(relativePath)
+      Files.createDirectories(outputPath.parent)
+
+      if (inputPath.toString().endsWith(".class")) {
+        val inputBytes = Files.readAllBytes(inputPath)
+        val outputBytes = parse(inputBytes).toBytes()
+        Files.write(outputPath, outputBytes)
+      } else {
+        Files.copy(inputPath, outputPath)
+      }
+      return CONTINUE
+    }
+  })
 }
 
 @Suppress("ArrayInDataClass")

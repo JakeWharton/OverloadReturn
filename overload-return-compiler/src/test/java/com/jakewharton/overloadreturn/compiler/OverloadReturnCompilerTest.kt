@@ -26,7 +26,7 @@ class OverloadReturnCompilerTest {
       }
     """.trimIndent())
 
-    val inputBytes = compile(input).single().readBytes()
+    val inputBytes = compile(input).single().toByteArray()
     val outputBytes = compiler.parse(inputBytes).toBytes()
     val output = outputBytes.toBytecodeString()
 
@@ -99,7 +99,7 @@ class OverloadReturnCompilerTest {
       }
     """.trimIndent())
 
-    val inputBytes = compile(input).single().readBytes()
+    val inputBytes = compile(input).single().toByteArray()
     val outputBytes = compiler.parse(inputBytes).toBytes()
     val output = outputBytes.toBytecodeString()
 
@@ -170,7 +170,7 @@ class OverloadReturnCompilerTest {
       }
     """.trimIndent())
 
-    val inputBytes = compile(input).single().readBytes()
+    val inputBytes = compile(input).single().toByteArray()
     val outputBytes = compiler.parse(inputBytes).toBytes()
     val output = outputBytes.toBytecodeString()
 
@@ -239,7 +239,7 @@ class OverloadReturnCompilerTest {
       }
     """.trimIndent())
 
-    val inputBytes = compile(input).single().readBytes()
+    val inputBytes = compile(input).single().toByteArray()
     val outputBytes = compiler.parse(inputBytes).toBytes()
     val output = outputBytes.toBytecodeString()
 
@@ -306,7 +306,7 @@ class OverloadReturnCompilerTest {
       }
     """.trimIndent())
 
-    val inputBytes = compile(input).single().readBytes()
+    val inputBytes = compile(input).single().toByteArray()
     val outputBytes = compiler.parse(inputBytes).toBytes()
     val output = outputBytes.toBytecodeString()
 
@@ -396,7 +396,7 @@ class OverloadReturnCompilerTest {
       }
     """.trimIndent())
 
-    val inputBytes = compile(input).single().readBytes()
+    val inputBytes = compile(input).single().toByteArray()
     val outputBytes = compiler.parse(inputBytes).toBytes()
     val output = outputBytes.toBytecodeString()
 
