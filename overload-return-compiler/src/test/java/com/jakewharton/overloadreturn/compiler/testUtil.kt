@@ -11,7 +11,6 @@ import java.nio.file.Files
 import java.nio.file.LinkOption
 import java.nio.file.OpenOption
 import java.nio.file.Path
-import java.nio.file.attribute.FileAttribute
 import javax.tools.JavaFileObject
 import kotlin.text.Charsets.UTF_8
 
@@ -31,20 +30,8 @@ fun ByteArray.toBytecodeString(): String {
   return writer.toString().trimEnd()
 }
 
-fun Path.createDirectory(vararg attrs: FileAttribute<*>) {
-  Files.createDirectory(this, *attrs)
-}
-fun Path.createDirectories(vararg attrs: FileAttribute<*>) {
-  Files.createDirectories(this, *attrs)
-}
-fun Path.writeBytes(bytes: ByteArray, vararg options: OpenOption) {
-  Files.write(this, bytes, *options)
-}
 fun Path.writeText(text: String, charset: Charset = UTF_8, vararg options: OpenOption) {
   writeBytes(text.toByteArray(charset), *options)
-}
-fun Path.readBytes(): ByteArray {
-  return Files.readAllBytes(this)
 }
 fun Path.readText(charset: Charset = UTF_8): String {
   return String(readBytes(), charset)

@@ -22,6 +22,11 @@ import org.objectweb.asm.Type.INT_TYPE
 import org.objectweb.asm.Type.LONG_TYPE
 import org.objectweb.asm.Type.SHORT_TYPE
 import org.objectweb.asm.Type.VOID_TYPE
+import java.nio.file.CopyOption
+import java.nio.file.Files
+import java.nio.file.OpenOption
+import java.nio.file.Path
+import java.nio.file.attribute.FileAttribute
 
 internal val overloadReturnDescriptor = Type.getDescriptor(OverloadReturn::class.java)
 
@@ -46,3 +51,19 @@ internal infix fun Int.isFlagIn(value: Int) = (value and this) != 0
 internal infix fun Int.isNotFlagIn(value: Int) = (value and this) == 0
 
 internal fun Int.withFlags(flag1: Int, flag2: Int) = this or flag1 or flag2
+
+fun Path.createDirectories(vararg attrs: FileAttribute<*>) {
+  Files.createDirectories(this, *attrs)
+}
+
+fun Path.readBytes(): ByteArray {
+  return Files.readAllBytes(this)
+}
+
+fun Path.writeBytes(bytes: ByteArray, vararg options: OpenOption) {
+  Files.write(this, bytes, *options)
+}
+
+fun Path.copyTo(other: Path, vararg options: CopyOption) {
+  Files.copy(this, other, *options)
+}

@@ -37,14 +37,14 @@ class OverloadReturnCompiler @JvmOverloads constructor(
       override fun visitFile(inputPath: Path, attrs: BasicFileAttributes): FileVisitResult {
         val relativePath = inputRoot.relativize(inputPath)
         val outputPath = outputRoot.resolve(relativePath)
-        Files.createDirectories(outputPath.parent)
+        outputPath.parent.createDirectories()
 
         if (inputPath.toString().endsWith(".class")) {
-          val inputBytes = Files.readAllBytes(inputPath)
+          val inputBytes = inputPath.readBytes()
           val outputBytes = parse(inputBytes).toBytes()
-          Files.write(outputPath, outputBytes)
+          outputPath.writeBytes(outputBytes)
         } else {
-          Files.copy(inputPath, outputPath)
+          inputPath.copyTo(outputPath)
         }
         return CONTINUE
       }

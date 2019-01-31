@@ -10,8 +10,8 @@ import javax.tools.JavaFileObject
 class OverloadReturnCompilerDirectoryTest {
   private val compiler = OverloadReturnCompiler()
   private val fs = Jimfs.newFileSystem(Configuration.unix())
-  private val input = fs.rootDirectories.first().resolve("in").also { it.createDirectory() }
-  private val output = fs.rootDirectories.first().resolve("out").also { it.createDirectory() }
+  private val input = fs.rootDirectories.first().resolve("in").also { it.createDirectories() }
+  private val output = fs.rootDirectories.first().resolve("out").also { it.createDirectories() }
 
   @Test fun nonClassFilesAreCopied() {
     input.resolve("test.txt").writeText("hey")
