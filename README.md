@@ -97,7 +97,25 @@ apply plugin: 'com.jakewharton.overloadreturn'
 
 #### Command Line
 
-TODO CLI
+You can build the CLI by running `./gradlew :overload-return-compiler:assemble`. Archives will be
+available in `overload-return-compiler/build/distributions/` or an exploded copy is available at
+`overload-return-compiler/build/install/`.
+
+The CLI takes two arguments: the root directory of class files to read and the output directory
+where processed class files will be written.
+
+```
+$ overload-return-compiler --help
+Usage: overload-return-compiler [OPTIONS] INPUT OUTPUT
+
+Options:
+  --debug     Show debug information while processing
+  -h, --help  Show this message and exit
+
+Arguments:
+  INPUT   Directory containing class files and resources
+  OUTPUT  Directory for processed class files and resources
+```
 
 ### Other
 
