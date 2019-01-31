@@ -10,7 +10,6 @@ import com.android.build.api.transform.Status.REMOVED
 import com.android.build.api.transform.Transform
 import com.android.build.api.transform.TransformInvocation
 import com.jakewharton.overloadreturn.compiler.OverloadReturnCompiler
-import com.jakewharton.overloadreturn.compiler.processDirectory
 import java.net.URI
 import java.nio.file.FileSystems
 

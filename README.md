@@ -119,7 +119,22 @@ Arguments:
 
 ### Other
 
-TODO see command line or integrate yourself
+The compiler is available as a Java API for integration into any system where a CLI isn't desired.
+
+```java
+OverloadReturnCompiler compiler = new OverloadReturnCompiler();
+byte[] inputBytes = // ...
+byte[] outputBytes = compiler.parse(inputBytes).toBytes();
+```
+
+You can also process an entire input directory to an output directory just like the CLI.
+
+```java
+OverloadReturnCompiler compiler = new OverloadReturnCompiler();
+Path inputDir = // ...
+Path outputDir = // ...
+compiler.processDirectory(inputDir, outputDir);
+```
 
 
 
