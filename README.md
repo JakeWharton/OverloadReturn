@@ -59,7 +59,7 @@ public V remove(K key) {
 ```
 
 Since the method previously had a return type of `void`, this will be both a source- and
-binary-compatible change (since the method couldn't be used as an expression).
+binary-compatible change (since the method could not be used as an expression).
 
 TODO reference return type migration advice
 
