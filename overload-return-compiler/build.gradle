@@ -19,4 +19,8 @@ dependencies {
 }
 
 distTar.enabled = false
+configurations.archives.artifacts.removeAll { it.file =~ 'tar' }
+
 assemble.dependsOn(installDist)
+
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
