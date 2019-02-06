@@ -11,7 +11,7 @@ buildscript {
       'junit': 'junit:junit:4.13-beta-1',
       'compileTesting': 'com.google.testing.compile:compile-testing:0.15',
       'truth': 'com.google.truth:truth:0.42',
-      'androidGradlePlugin': 'com.android.tools.build:gradle:3.3.0',
+      'androidGradlePlugin': 'com.android.tools.build:gradle:3.2.1',
       'jimfs': 'com.google.jimfs:jimfs:1.1',
   ]
 
