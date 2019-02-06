@@ -26,7 +26,7 @@ public java.lang.String greeting();
 
 public java.lang.CharSequence greeting();
   descriptor: ()Ljava/lang/CharSequence;
-  flags: ACC_PUBLIC, ACC_SYNTHETIC
+  flags: ACC_PUBLIC, ACC_SYNTHETIC, ACC_BRIDGE
   Code:
     stack=1, locals=1, args_size=1
        0: aload_0
